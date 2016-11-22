@@ -120,6 +120,10 @@ libide_1_0_la_public_headers =                            \
 	search/ide-search-provider.h                      \
 	search/ide-search-reducer.h                       \
 	search/ide-search-result.h                        \
+	shortcuts/ide-shortcut-context.h                  \
+	shortcuts/ide-shortcut-controller.h               \
+	shortcuts/ide-shortcut-manager.h                  \
+	shortcuts/ide-shortcut-theme.h                    \
 	snippets/ide-source-snippet-chunk.h               \
 	snippets/ide-source-snippet-context.h             \
 	snippets/ide-source-snippet.h                     \
@@ -291,6 +295,10 @@ libide_1_0_la_public_sources =                            \
 	runtimes/ide-runtime.c                            \
 	scripting/ide-script-manager.c                    \
 	scripting/ide-script.c                            \
+	shortcuts/ide-shortcut-context.c                  \
+	shortcuts/ide-shortcut-controller.c               \
+	shortcuts/ide-shortcut-manager.c                  \
+	shortcuts/ide-shortcut-theme.c                    \
 	search/ide-omni-search-display.c                  \
 	search/ide-omni-search-entry.c                    \
 	search/ide-omni-search-group.c                    \

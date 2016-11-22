@@ -28,6 +28,7 @@
 #include "editor/ide-editor-perspective.h"
 #include "greeter/ide-greeter-perspective.h"
 #include "preferences/ide-preferences-perspective.h"
+#include "shortcuts/ide-shortcut-manager.h"
 #include "util/ide-gtk.h"
 #include "util/ide-window-settings.h"
 #include "workbench/ide-layout-pane.h"
@@ -191,6 +192,19 @@ ide_workbench_delete_event (GtkWidget   *widget,
   return GDK_EVENT_PROPAGATE;
 }
 
+static gboolean
+ide_workbench_key_press_event (GtkWidget   *widget,
+                               GdkEventKey *event)
+{
+  g_assert (IDE_IS_WORKBENCH (widget));
+  g_assert (event != NULL);
+
+  if (ide_shortcut_manager_handle_event (NULL, event, widget))
+    return GDK_EVENT_STOP;
+
+  return GTK_WIDGET_CLASS (ide_workbench_parent_class)->key_press_event (widget, event);
+}
+
 static void
 ide_workbench_constructed (GObject *object)
 {
@@ -300,6 +314,7 @@ ide_workbench_class_init (IdeWorkbenchClass *klass)
   object_class->set_property = ide_workbench_set_property;
 
   widget_class->delete_event = ide_workbench_delete_event;
+  widget_class->key_press_event = ide_workbench_key_press_event;
 
   /**
    * IdeWorkbench:context:
