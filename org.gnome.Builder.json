@@ -5,33 +5,22 @@
     "sdk": "org.gnome.Sdk",
     "command": "gnome-builder",
     "finish-args": [
-        /* Allow access to developer tools */
         "--allow=devel",
         "--talk-name=org.freedesktop.Flatpak",
-        /* X11 + XShm access */
         "--share=ipc", "--socket=x11",
-        /* Wayland access */
         "--socket=wayland",
-        /* We want full fs access */
         "--filesystem=host",
-        /* Needs to talk to the network: */
         "--share=network",
         "--talk-name=org.gtk.vfs.*",
-        /* Needs access to policykit for flatpak and sysprof */
         "--system-talk-name=org.freedesktop.PolicyKit1",
-        /* Needs access to host sysprofd for profiling */
         "--system-talk-name=org.gnome.Sysprof2",
-        /* Needed for dconf to work (+ host or homedir read access from above) */
         "--filesystem=xdg-run/dconf",
         "--filesystem=~/.config/dconf:ro",
         "--talk-name=ca.desrt.dconf",
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
-        /* Need access to talk to the file manager */
         "--talk-name=org.freedesktop.FileManager1",
-        /* We need access to auth agents */
         "--talk-name=org.freedesktop.secrets",
 	"--filesystem=xdg-run/keyring",
-        /* Needed for various SSL certificates to work */
         "--env=SSL_CERT_DIR=/etc/ssl/certs",
         "--filesystem=/etc/ssl:ro",
         "--filesystem=/etc/pki:ro",
