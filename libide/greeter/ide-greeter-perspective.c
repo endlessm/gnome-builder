@@ -922,8 +922,7 @@ run_genesis_addin (PeasExtensionSet *set,
 }
 
 static void
-ide_greeter_perspective_genesis_continue_clicked (IdeGreeterPerspective *self,
-                                                  GtkButton             *button)
+ide_greeter_perspective_genesis_continue (IdeGreeterPerspective *self)
 {
   struct {
     IdeGreeterPerspective *self;
@@ -931,12 +930,35 @@ ide_greeter_perspective_genesis_continue_clicked (IdeGreeterPerspective *self,
   } state = { 0 };
 
   g_assert (IDE_IS_GREETER_PERSPECTIVE (self));
-  g_assert (GTK_IS_BUTTON (button));
 
   state.self = self;
   state.name = gtk_stack_get_visible_child_name (self->genesis_stack);
 
   peas_extension_set_foreach (self->genesis_set, run_genesis_addin, &state);
+}
+
+static void
+ide_greeter_perspective_genesis_continue_clicked (IdeGreeterPerspective *self,
+                                                  GtkButton             *button)
+{
+  g_assert (GTK_IS_BUTTON (button));
+  ide_greeter_perspective_genesis_continue (self);
+}
+
+void
+ide_greeter_perspective_set_genesis_property (IdeGreeterPerspective *self,
+                                              const gchar           *genesis_addin_name,
+                                              const gchar           *manifest)
+{
+  GtkWidget *addin;
+
+  g_assert (IDE_IS_GREETER_PERSPECTIVE (self));
+
+  addin = gtk_stack_get_child_by_name (self->genesis_stack, genesis_addin_name);
+  g_object_set (addin, "manifest", manifest, NULL);
+
+  gtk_widget_hide (GTK_WIDGET (self->genesis_continue_button));
+  ide_greeter_perspective_genesis_continue (self);
 }
 
 static void
