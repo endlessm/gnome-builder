@@ -903,6 +903,7 @@ gbp_flatpak_runtime_create_runner (IdeRuntime     *runtime,
       app_id = "org.gnome.FlatpakApp";
     }
   ide_runner_set_run_on_host (IDE_RUNNER (runner), TRUE);
+  ide_runner_append_argv (IDE_RUNNER (runner), "dbus-run-session");
   ide_runner_append_argv (IDE_RUNNER (runner), "flatpak");
   ide_runner_append_argv (IDE_RUNNER (runner), "run");
   ide_runner_append_argv (IDE_RUNNER (runner), "--share=ipc");
