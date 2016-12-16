@@ -305,7 +305,8 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://github.com/endlessm/gnome-builder.git"
+                    "url": ".git",
+                    "branch": "flatpak-greeter-rebase"
                 }
             ]
         }

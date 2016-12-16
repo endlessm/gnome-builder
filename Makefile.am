@@ -72,7 +72,7 @@ run:
 	GOBJECT_DEBUG=instance-count \
 	PYTHONDONTWRITEBYTECODE=yes \
 	PATH=$(top_builddir)/src:${PATH} \
-	$(LIBTOOL) --mode=execute gdb -ex run --args src/gnome-builder -vvvv -s
+	$(LIBTOOL) --mode=execute gdb -ex run --args src/gnome-builder -vvvv -s $(ARGS)
 
 strace:
 	PEAS_DEBUG=1 \
