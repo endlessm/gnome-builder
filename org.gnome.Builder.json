@@ -301,10 +301,12 @@
         },
         {
             "name": "gnome-builder",
+            "config-opts": [ "--enable-debug", "--enable-tracing" ],
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://github.com/endlessm/gnome-builder.git"
+                    "url": "file:///home/cosimo/src/gnome-builder/.git",
+                    "branch": "T14722-build"
                 }
             ]
         }
