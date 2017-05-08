@@ -556,7 +556,7 @@
         },
         {
             "name": "gnome-builder",
-            "config-opts": [ "--with-channel=flatpak-stable" ],
+            "config-opts": [ "--with-channel=flatpak-stable", "--enable-vala-pack-plugin=no" ],
             "sources": [
                 {
                     "type": "git",
